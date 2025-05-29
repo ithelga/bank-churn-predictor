@@ -1,0 +1,22 @@
+# === Артефакты моделей
+model/artifacts/
+*.pkl
+*.joblib
+*.h5
+*.pth
+
+# === Данные
+data/
+*.csv
+
+# === Python кэш и виртуалки
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+ENV/
+
+# === PyCharm
+.idea/
