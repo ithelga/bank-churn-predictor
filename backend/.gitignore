@@ -1,13 +1,12 @@
 # === Артефакты моделей
-model/artifacts/
-*.pkl
-*.joblib
-*.h5
-*.pth
+model/artifacts/*
 
 # === Данные
 data/
 *.csv
+
+# === База данных
+churn.db
 
 # === Python кэш и виртуалки
 __pycache__/
