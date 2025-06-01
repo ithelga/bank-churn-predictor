@@ -7,28 +7,45 @@ import request from "@/pages/api/request";
 export default function Home() {
     const [status, setStatus] = useState("idle");
     const [processedCount, setProcessedCount] = useState(0);
-    const [resultData, setResultData] = useState(null);
     const fileInputRef = useRef(null);
     const router = useRouter();
+    const [fileUid, setFileUid] = useState(null);
+    const [errorMsg, setErrorMsg] = useState("");
 
-    async function loadData() {
+    const handleFileUpload = async (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        setStatus("processing");
+        setErrorMsg("");
+
+        const formData = new FormData();
+        formData.append("file", file);
+
         try {
-            const jsonData = await request.get('/test-evaluate/');
-            const count = jsonData.count;
-            setProcessedCount(count);
-            setResultData(jsonData); // сохраняем весь объект
+            const jsonData = await request.post("/fine-tune/", formData);
+            setProcessedCount(jsonData.count);
+            setFileUid(jsonData.file_uid);
             setStatus("done");
         } catch (error) {
-            console.error("Error fetching data:", error);
+            console.error("Error uploading file:", error);
             setStatus("idle");
-        }
-    }
 
-    const handleFileUpload = (e) => {
-        const file = e.target.files[0];
-        if (file) {
-            setStatus("processing");
-            loadData();
+            if (error.message.includes("Only CSV files are supported")) {
+                setErrorMsg("❌ Пожалуйста, загрузите файл в формате CSV");
+            } else if (error.message.includes("Missing required columns")) {
+                const detailStart = error.message.indexOf("Missing required columns:");
+                if (detailStart !== -1) {
+                    const rawDetail = error.message.slice(detailStart);
+                    const columnList = rawDetail
+                        .replace("Missing required columns:", "")
+                        .trim()
+                        .slice(0, -4);  // убираем последние 4 символа
+                    setErrorMsg(`❌ Пропущены обязательные колонки: ${columnList}`);
+                }
+            } else {
+                setErrorMsg("❌ Не удалось обработать файл. Попробуйте позже.");
+            }
         }
 
         if (fileInputRef.current) {
@@ -36,14 +53,16 @@ export default function Home() {
         }
     };
 
+
     const handleNavigateToAnalytics = () => {
-        if (resultData) {
+        if (fileUid) {
             router.push({
                 pathname: "/analytics",
-                query: { data: JSON.stringify(resultData) },
+                query: { file_uid: fileUid },
             });
         }
     };
+
 
     return (
         <>
@@ -51,6 +70,8 @@ export default function Home() {
             <div className={styles.wrapper}>
                 <div className={styles.formContainer}>
                     <img src="/logo.png" alt="Логотип" className={styles.logo} />
+
+
 
                     {status === "idle" && (
                         <div className={styles.contentBottom}>
@@ -69,12 +90,16 @@ export default function Home() {
                         </div>
                     )}
 
+
+
                     {status === "processing" && (
                         <div className={styles.processingContainer}>
                             <div className={styles.spinner}></div>
                             <p className={styles.processingText}>Обработка файла...</p>
                         </div>
                     )}
+
+                    {errorMsg && <p className={styles.errorText}>{errorMsg}</p>}
 
                     {status === "done" && (
                         <div className={styles.contentBottom}>
@@ -84,7 +109,10 @@ export default function Home() {
                             </button>
                         </div>
                     )}
+
+
                 </div>
+
             </div>
         </>
     );

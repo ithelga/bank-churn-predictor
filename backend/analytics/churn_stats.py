@@ -1,10 +1,9 @@
 import pandas as pd
 
-
 def get_age_group_stats(df):
     df_copy = df.copy()
     df_copy["AgeGroup"] = pd.cut(df_copy["Age"], bins=[0, 30, 40, 50, 60, 150],
-                                 labels=["30-", "30-40", "40-50", "50-60", "60+"])
+                                 labels=["<30", "30-40", "40-50", "50-60", "60+"])
     return df_copy.groupby("AgeGroup")["ChurnProbability"].mean().round(3).to_dict()
 
 

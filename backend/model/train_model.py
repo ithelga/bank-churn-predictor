@@ -40,6 +40,6 @@ model.fit(X_train_proc, y_clean)
 
 joblib.dump(preprocessor, os.path.join(ARTIFACTS_DIR, "preprocessor.pkl"))
 joblib.dump(model, os.path.join(ARTIFACTS_DIR, "random_forest_model.pkl"))
-#X_test_raw.assign(Exited=y_test.values).to_csv(os.path.join(ARTIFACTS_DIR, "test_raw.csv"), index=False)
+X_test_raw.assign(Exited=y_test.values).to_csv(os.path.join(ARTIFACTS_DIR, "test_raw.csv"), index=False)
 
 print("Модель, предпроцессор и данные сохранены", ARTIFACTS_DIR)

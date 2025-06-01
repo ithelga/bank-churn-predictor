@@ -96,12 +96,20 @@
     padding: 0.75rem 1rem;
     text-align: center;
     font-weight: 600;
+    user-select: none;
 }
 
 .table thead th:first-child {
     border-top-left-radius: 0.75rem;
     border-bottom-left-radius: 0.75rem;
     text-align: left;
+}
+
+.table td:first-child,
+.table thead th:first-child {
+    width: 180px; /* или другое подходящее значение */
+    text-align: left;
+    font-weight: 600;
 }
 
 .table thead th:last-child {
@@ -176,22 +184,84 @@
 .chartGrid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
+    gap: 3rem;
     margin-top: 2rem;
 }
 
 .chartBlock {
-    text-align: center;
-    height: 350px; /* или 150px — подбирай по вкусу */
-    margin-bottom: 30px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
+    background-color: white;
+    border-radius: 16px;
+    padding: 40px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
+
 
 .chartBlock h3 {
     font-size: 1.25rem; /* ← Это и есть размер шрифта */
     font-weight: 600;
     color: #373844;
-    margin-bottom: 1rem; /* Больше отступ после заголовка */
+    margin-bottom: 2rem; /* Больше отступ после заголовка */
+}
+
+
+.topHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.25rem;
+}
+
+.clientCount {
+    color: #373844;
+    font-size: 1.0rem;
+    font-weight: bold;
+}
+
+.groupButtons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.groupButton {
+    padding: 10px 10px;
+    border: none;
+    background-color: white;
+    color: #373844;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.activeGroup {
+    background-color: #FFAFCC;
+    color: #373844;
+    font-weight: bold;
+}
+
+.processingContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+}
+
+.spinner {
+    width: 3rem;
+    height: 3rem;
+    border: 4px solid #CEA2E6;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 1rem;
+}
+
+.processingText {
+    font-size: 0.875rem;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
 }

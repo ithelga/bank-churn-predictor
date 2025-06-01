@@ -7,23 +7,30 @@ class ApiClient {
         return this.request(endpoint, 'GET');
     }
 
+    async post(endpoint, data = null) {
+        return this.request(endpoint, 'POST', data);
+    }
+
     async request(endpoint, method, data = null) {
         const url = `${this.baseURL}${endpoint}`;
         const options = {
             method,
-            headers: {
-                'Content-Type': 'application/json',
-            },
+            headers: {},
         };
 
-        if (data) {
+        // Если передаём FormData — не указываем Content-Type
+        if (data && !(data instanceof FormData)) {
+            options.headers['Content-Type'] = 'application/json';
             options.body = JSON.stringify(data);
+        } else if (data instanceof FormData) {
+            options.body = data;
         }
 
         try {
             const response = await fetch(url, options);
             if (!response.ok) {
-                throw new Error('Network response was not ok');
+                const errorText = await response.text();
+                throw new Error(errorText);
             }
             return await response.json();
         } catch (error) {
@@ -33,6 +40,7 @@ class ApiClient {
     }
 }
 
-const baseURL = ``;
+// const baseURL = ``;
+const baseURL = "http://127.0.0.1:8000";
 
 export default new ApiClient(baseURL);

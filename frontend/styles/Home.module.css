@@ -108,3 +108,14 @@
         transform: rotate(360deg);
     }
 }
+
+.errorText {
+    color: #373844;
+    background-color: #FFC8DD;
+    border: 1px solid #FFC8DD;
+    font-size: 0.85rem;
+    padding: 10px;
+    margin-top: 15px;
+    border-radius: 8px;
+    text-align: center;
+}

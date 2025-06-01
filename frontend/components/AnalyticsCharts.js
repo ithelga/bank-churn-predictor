@@ -57,47 +57,47 @@ export default function AnalyticsCharts({ data }) {
             </div>
 
             <div className={styles.chartBlock}>
-                <h3 style={{ color: "#CD9EE8" }}>По полу</h3>
+                <h3 style={{ color: "#CD9EE8" }}>Вероятность оттока по полу</h3>
                 <Bar data={createBarData(data.gender, "Пол")} options={commonOptions} />
             </div>
 
             <div className={styles.chartBlock}>
-                <h3 style={{ color: "#CD9EE8" }}>По странам</h3>
+                <h3 style={{ color: "#CD9EE8" }}>Вероятность оттока по странам</h3>
                 <Bar data={createBarData(data.geography, "Страна")} options={commonOptions} />
             </div>
 
             <div className={styles.chartBlock}>
-                <h3 style={{ color: "#CD9EE8" }}>Кредитный рейтинг</h3>
+                <h3 style={{ color: "#CD9EE8" }}>Вероятность оттока по кредитному рейтингу</h3>
                 <Bar data={createBarData(data.credit_score, "Кредитный рейтинг")} options={commonOptions} />
             </div>
 
             <div className={styles.chartBlock}>
-                <h3 style={{ color: "#CD9EE8" }}>Баланс на счету</h3>
+                <h3 style={{ color: "#CD9EE8" }}>Вероятность оттока по балансу на счету</h3>
                 <Bar data={createBarData(data.balance, "Баланс")} options={commonOptions} />
             </div>
 
             <div className={styles.chartBlock}>
-                <h3 style={{ color: "#CD9EE8" }}>Оценочная зарплата</h3>
+                <h3 style={{ color: "#CD9EE8" }}>Вероятность оттока по оценочной зарплате</h3>
                 <Bar data={createBarData(data.estimated_salary, "Зарплата")} options={commonOptions} />
             </div>
 
             <div className={styles.chartBlock}>
-                <h3 style={{ color: "#CD9EE8" }}>Активность клиента</h3>
+                <h3 style={{ color: "#CD9EE8" }}>Вероятность оттока по активности клиента</h3>
                 <Bar data={createBarData(data.activity, "Активность")} options={commonOptions} />
             </div>
 
             <div className={styles.chartBlock}>
-                <h3 style={{ color: "#CD9EE8" }}>Стаж</h3>
+                <h3 style={{ color: "#CD9EE8" }}>Вероятность оттока по стажу</h3>
                 <Bar data={createBarData(data.tenure, "Стаж")} options={commonOptions} />
             </div>
 
             <div className={styles.chartBlock}>
-                <h3 style={{ color: "#CD9EE8" }}>Кол-во продуктов</h3>
+                <h3 style={{ color: "#CD9EE8" }}>Вероятность оттока по кол-ву продуктов</h3>
                 <Bar data={createBarData(data.num_of_products, "Продукты")} options={commonOptions} />
             </div>
 
             <div className={styles.chartBlock}>
-                <h3 style={{ color: "#CD9EE8" }}>Кредитная карта</h3>
+                <h3 style={{ color: "#CD9EE8" }}>Вероятность оттока по кредитной карте</h3>
                 <Bar data={createBarData(data.has_credit_card, "Кредитка")} options={commonOptions} />
             </div>
         </div>
