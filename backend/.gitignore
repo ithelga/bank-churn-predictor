@@ -1,0 +1,21 @@
+# === Артефакты моделей
+model/artifacts/*
+
+# === Данные
+data/
+*.csv
+
+# === База данных
+churn.db
+
+# === Python кэш и виртуалки
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+ENV/
+
+# === PyCharm
+.idea/

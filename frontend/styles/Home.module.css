@@ -1,0 +1,121 @@
+.wrapper {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f3f4f6;
+    padding: 1rem;
+}
+
+.formContainer {
+    background-color: white;
+    padding: 3rem;
+    border-radius: 1.5rem;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+    width: 100%;
+    max-width: 600px;
+    height: 480px;
+    text-align: center;
+    color: #373844;
+    display: flex;
+    flex-direction: column;
+}
+
+.logo {
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+    margin: 0 auto;
+    flex-shrink: 0;
+}
+
+.contentBottom {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    flex: 1;
+    padding-top: 2rem;
+}
+
+.title {
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.subtitle {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    min-height: 24px;
+}
+
+.uploadButton,
+.detailButton {
+    background-color: #CEA2E6;
+    color: white;
+    padding: 1rem 2rem;
+    width: 220px;
+    border-radius: 1rem;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    display: inline-block;
+    transition: opacity 0.2s;
+    border: none;
+}
+
+.uploadButton:hover,
+.detailButton:hover {
+    opacity: 0.8;
+}
+
+.hiddenInput {
+    display: none;
+}
+
+.processingContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+}
+
+.spinner {
+    width: 3rem;
+    height: 3rem;
+    border: 4px solid #CEA2E6;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 1rem;
+}
+
+.processingText {
+    font-size: 0.875rem;
+}
+
+.resultTitle {
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.errorText {
+    color: #373844;
+    background-color: #FFC8DD;
+    border: 1px solid #FFC8DD;
+    font-size: 0.85rem;
+    padding: 10px;
+    margin-top: 15px;
+    border-radius: 8px;
+    text-align: center;
+}
